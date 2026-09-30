@@ -58,3 +58,18 @@ def main():
 
 if __name__ == '__main__':
     main()
+from flask import Flask
+import threading
+
+# إنشاء سيرفر وهمي صغير عشان Render يرضى عن الـ Web Service وما يقفلهاش
+web_app = Flask(__name__)
+
+@web_app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_web():
+    web_app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
+# تشغيل السيرفر الوهمي في خلفية البوت
+threading.Thread(target=run_web).start()

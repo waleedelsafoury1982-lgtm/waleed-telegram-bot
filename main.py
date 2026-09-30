@@ -5,14 +5,13 @@ from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filte
 from google import genai
 from google.genai import types
 
-# قراءة المفاتيح من متغيرات البيئة على Render
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# 1. رابط التحميل المباشر لملف الـ PDF من جوجل درايف (حط رابطك هنا)
-DRIVE_PDF_URL = "https://drive.google.com/uc?export=download&id=1SHcGZGJLt00Rlyw7nMKfiYVKRAJs9736"
+# حط رابط التحميل المباشر لجوجل درايف هنا
+DRIVE_PDF_URL = "https://drive.google.com/uc?export=download&id=حط_معرف_الملف_هنا"
 local_pdf_path = "transcript.pdf"
 
 print("جاري تحميل ملف الشرح من جوجل درايف...")
@@ -21,11 +20,9 @@ with open(local_pdf_path, "wb") as f:
     f.write(response.content)
 print("تم تحميل الملف بنجاح، جاري رفعه لـ Gemini...")
 
-# 2. رفعه لخدمة ملفات جيميناي مؤقتاً عند التشغيل
 uploaded_file = client.files.upload(file=local_pdf_path)
 print("تم إعداد الملف وجاهز لاستقبال أسئلة الطلاب.")
 
-# 3. دالة الرد على الطلاب
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
     

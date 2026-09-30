@@ -11,7 +11,7 @@ TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 # حط رابط التحميل المباشر لجوجل درايف هنا
-DRIVE_PDF_URL = "https://drive.google.com/uc?export=download&id=حط_معرف_الملف_هنا"
+DRIVE_PDF_URL = "https://drive.google.com/uc?export=download&id=1SHcGZGJLt00Rlyw7nMKfiYVKRAJs9736"
 local_pdf_path = "transcript.pdf"
 
 print("جاري تحميل ملف الشرح من جوجل درايف...")
